@@ -72,9 +72,11 @@ public class Tabuleiro {
 		for (i = this.alt-1; i >= 0; i--) {
 
 			for (j = 0; j < this.larg; j++) {
-				System.out.print(this.tabuleiro[i][j] + " ");
+				System.out.print(this.tabuleiro[i][j].getNome() + " ");
 			}
 			System.out.println();
 		}
 	}
 }
+
+//if (objeto.instanceOF(classe));

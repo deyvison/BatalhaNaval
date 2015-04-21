@@ -1,5 +1,15 @@
 public class Agua implements ItemTabuleiro {
 
-	private static final String MSG = "Tiro na água!";
-	private static final String NOME = "Água";
+	
+	private String nome;
+	
+	public Agua(){
+		this.nome = "Água";
+	}
+	
+	public String getNome(){
+		
+		return this.nome;
+	}
+	
 }
