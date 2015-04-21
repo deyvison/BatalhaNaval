@@ -30,11 +30,11 @@ public class Tabuleiro {
 	public void adicionarEmbarcacao(Embarcacao e) {
 
 		int i, j;
-		int iniX = e.getPosXInicial();
-		int iniY = e.getPosYInicial();
-		for (i = iniY; i <= e.getPosYFinal(); i++) {
+		int iniX = e.getPosXInicial()-1;
+		int iniY = e.getPosYInicial()-1;
+		for (i = iniY; i < e.getPosYFinal(); i++) {
 
-			for (j = iniX; j <= e.getPosXFinal(); j++) {
+			for (j = iniX; j < e.getPosXFinal(); j++) {
 
 				this.tabuleiro[i][j] = e;
 			}
@@ -69,13 +69,12 @@ public class Tabuleiro {
 	public void mostrarTabuleiro() {
 
 		int i, j;
-		for (i = 0; i < this.alt; i++) {
+		for (i = this.alt-1; i >= 0; i--) {
 
 			for (j = 0; j < this.larg; j++) {
 				System.out.print(this.tabuleiro[i][j] + " ");
 			}
 			System.out.println();
 		}
-
 	}
 }
