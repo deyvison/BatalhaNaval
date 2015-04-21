@@ -3,7 +3,7 @@ public class Batalha_Naval {
 	public static void main(String[] args) {
 		Tabuleiro t1, t2;
 
-		t1 = new Tabuleiro(15, 15); // coluna,linha
+		t1 = new Tabuleiro(15, 15); // linha,coluna
 		t2 = new Tabuleiro(15, 15);
 
 		// t1.mostrarTabuleiro();
