@@ -39,7 +39,6 @@ public class Tabuleiro {
 				this.tabuleiro[i][j] = e;
 			}
 		}
-
 	}
 
 	public ItemTabuleiro[][] getTabuleiro() {
