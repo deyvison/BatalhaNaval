@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Tabuleiro {
@@ -74,6 +77,33 @@ public class Tabuleiro {
 				System.out.print(this.tabuleiro[i][j].getNome() + " ");
 			}
 			System.out.println();
+		}
+	}
+	public void adicionarEmbarcacaoArquivo(String nomeArquivo) throws IOException{
+		
+		BufferedReader leitor = null;
+		
+		try{
+			leitor = new BufferedReader(new FileReader(nomeArquivo));
+			String linha = null;
+			
+			do{
+				linha = leitor.readLine();
+				
+				if(linha != null){
+					
+					String dados[] = linha.split(" ");
+
+					this.adicionarEmbarcacao(new Embarcacao(dados[0], 
+							Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), 
+							Integer.parseInt(dados[3]), Integer.parseInt(dados[4])));
+				}
+				
+			}while(linha != null);
+			
+		} finally{
+			
+			if(leitor != null) leitor.close();
 		}
 	}
 }
