@@ -3,6 +3,7 @@ import java.io.IOException;
 public class Batalha_Naval {
 
 	public static void main(String[] args) throws IOException {
+		
 		Tabuleiro t1, t2;
 
 		t1 = new Tabuleiro(15, 15); // linha,coluna
@@ -30,17 +31,15 @@ public class Batalha_Naval {
 		t1.adicionarEmbarcacaoArquivo(args[1]);
 		t2.adicionarEmbarcacaoArquivo(args[0]);
 		
+		if(t1.isCarregado() && t2.isCarregado()) 
+			System.out.println("TABULEIROS CARREGADOS COM SUCESSO\n");
+		
 		t1.mostrarTabuleiro();
 		System.out.println();
 		t2.mostrarTabuleiro();
 		
 		
-		ItemTabuleiro[][] teste = t1.getTabuleiro();
-		System.out.println(teste[5][2].getNome()); 
-		System.out.println(teste[6][2].getNome());
-		System.out.println(teste[7][2].getNome());
-		System.out.println(teste[8][2].getNome());
-		System.out.println(teste[9][2].getNome());
+		
 		
 	}
 

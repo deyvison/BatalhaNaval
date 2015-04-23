@@ -8,13 +8,14 @@ public class Tabuleiro {
 	private ItemTabuleiro[][] tabuleiro;
 	private int alt, larg;
 	private ArrayList<Jogada> jogadas;
-	
+	private boolean carregado;
 	public Tabuleiro(int alt, int larg) {
 
 		this.alt = alt;
 		this.larg = larg;
 		this.tabuleiro = new ItemTabuleiro[larg][alt];
 		this.jogadas = new ArrayList<Jogada>();
+		this.carregado = false;
 		this.preencheAgua();
 	}
 
@@ -102,6 +103,8 @@ public class Tabuleiro {
 				
 			}while(linha != null);
 			
+			this.setCarregado(true);
+			
 		}catch(Exception e){
 			System.out.println("ERRO LINHA "+ contLinha +": " + nomeArquivo);
 			
@@ -109,6 +112,22 @@ public class Tabuleiro {
 			
 			if(leitor != null) leitor.close();
 		}
+	}
+
+	public ArrayList<Jogada> getJogadas() {
+		return jogadas;
+	}
+
+	public void setJogadas(ArrayList<Jogada> jogadas) {
+		this.jogadas = jogadas;
+	}
+
+	public boolean isCarregado() {
+		return carregado;
+	}
+
+	public void setCarregado(boolean carregado) {
+		this.carregado = carregado;
 	}
 }
 
