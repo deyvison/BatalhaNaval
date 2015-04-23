@@ -23,8 +23,8 @@ public class Tabuleiro {
 		Agua a = new Agua();
 
 		int i, j;
-		for (i = 0; i < this.larg; i++) {
-			for (j = 0; j < this.alt; j++) {
+		for (i = 0; i < this.alt; i++) {
+			for (j = 0; j < this.larg; j++) {
 				this.tabuleiro[i][j] = a;
 			}
 		}
@@ -82,12 +82,13 @@ public class Tabuleiro {
 	public void adicionarEmbarcacaoArquivo(String nomeArquivo) throws IOException{
 		
 		BufferedReader leitor = null;
-		
+		int contLinha = 0;
 		try{
 			leitor = new BufferedReader(new FileReader(nomeArquivo));
 			String linha = null;
 			
 			do{
+				contLinha++;
 				linha = leitor.readLine();
 				
 				if(linha != null){
@@ -95,13 +96,16 @@ public class Tabuleiro {
 					String dados[] = linha.split(" ");
 
 					this.adicionarEmbarcacao(new Embarcacao(dados[0], 
-							Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), 
-							Integer.parseInt(dados[3]), Integer.parseInt(dados[4])));
+						Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), 
+						Integer.parseInt(dados[3]), Integer.parseInt(dados[4])));
 				}
 				
 			}while(linha != null);
 			
-		} finally{
+		}catch(Exception e){
+			System.out.println("ERRO LINHA "+ contLinha +": " + nomeArquivo);
+			
+		}finally{
 			
 			if(leitor != null) leitor.close();
 		}

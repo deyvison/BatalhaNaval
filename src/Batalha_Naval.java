@@ -33,6 +33,15 @@ public class Batalha_Naval {
 		t1.mostrarTabuleiro();
 		System.out.println();
 		t2.mostrarTabuleiro();
+		
+		
+		ItemTabuleiro[][] teste = t1.getTabuleiro();
+		System.out.println(teste[5][2].getNome()); 
+		System.out.println(teste[6][2].getNome());
+		System.out.println(teste[7][2].getNome());
+		System.out.println(teste[8][2].getNome());
+		System.out.println(teste[9][2].getNome());
+		
 	}
 
 }
