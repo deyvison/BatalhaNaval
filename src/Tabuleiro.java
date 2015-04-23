@@ -95,10 +95,14 @@ public class Tabuleiro {
 				if(linha != null){
 					
 					String dados[] = linha.split(" ");
+					Embarcacao e = new Embarcacao(dados[0], 
+							Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), 
+							Integer.parseInt(dados[3]), Integer.parseInt(dados[4]));
 
-					this.adicionarEmbarcacao(new Embarcacao(dados[0], 
-						Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), 
-						Integer.parseInt(dados[3]), Integer.parseInt(dados[4])));
+					this.validaCoordenadas(e);
+					this.validaTamanho(e);
+					this.verificaEmbarcacoesSeTocam(e);
+					this.adicionarEmbarcacao(e);
 				}
 				
 			}while(linha != null);
@@ -128,6 +132,39 @@ public class Tabuleiro {
 
 	public void setCarregado(boolean carregado) {
 		this.carregado = carregado;
+	}
+	
+	public boolean validaCoordenadas(Embarcacao e) throws Exception{
+		if(e.getPosYInicial() == e.getPosYFinal() || e.getPosXInicial() == e.getPosXFinal())
+			return true;
+		throw new Exception();
+	}
+	
+	public boolean validaTamanho(Embarcacao e) throws Exception{
+		
+		if(e.getPosXFinal() == e.getPosXInicial() && (e.getPosYFinal() - e.getPosYInicial() + 1) == e.getTamanho())
+			return true;
+		else if(e.getPosYFinal() == e.getPosYInicial() && (e.getPosXFinal() - e.getPosXInicial() + 1) == e.getTamanho())
+			return true;
+		
+		throw new Exception();
+	}
+	
+	public boolean verificaEmbarcacoesSeTocam(Embarcacao e) throws Exception{
+		
+		int i, j;
+		int iniX = e.getPosXInicial()-1;
+		int iniY = e.getPosYInicial()-1;
+		for (i = iniY; i < e.getPosYFinal(); i++) {
+
+			for (j = iniX; j < e.getPosXFinal(); j++) {
+
+				if (!this.tabuleiro[i][j].getNome().equals("AGUA")){
+					throw new Exception();
+				}
+			}
+		}
+		return true;
 	}
 }
 

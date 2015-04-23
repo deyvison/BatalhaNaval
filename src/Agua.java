@@ -4,7 +4,7 @@ public class Agua implements ItemTabuleiro {
 	private String nome;
 	
 	public Agua(){
-		this.nome = "Água";
+		this.nome = "AGUA";
 	}
 	
 	public String getNome(){

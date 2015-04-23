@@ -2,7 +2,8 @@ public class Embarcacao implements ItemTabuleiro {
 
 	private String nome;
 	private int tamanho, posXInicial, posYInicial, posXFinal, posYFinal;
-
+	
+	
 	public Embarcacao(String nome, int posYInicial, int posXInicial, int posYFinal, int posXFinal) {
 		
 		this.nome = nome;
@@ -11,8 +12,9 @@ public class Embarcacao implements ItemTabuleiro {
 		this.posYFinal = posYFinal;
 		this.posXFinal = posXFinal;
 		
-		if(posXInicial == posXFinal) this.tamanho = (posYFinal - posYInicial) + 1;
-		else this.tamanho =  (posXFinal - posXInicial) + 1;
+		this.atribuirTamanho();
+		
+		
 	}
 
 	public String getNome() {
@@ -62,4 +64,27 @@ public class Embarcacao implements ItemTabuleiro {
 	public void setPosYFinal(int posYFinal) {
 		this.posYFinal = posYFinal;
 	}
+	
+	public void atribuirTamanho(){
+		
+		switch(this.nome){
+			case "PORTA_AVIOES":
+				this.tamanho = 5;
+				break;
+			case "DESTROYER":
+				this.tamanho = 4;
+				break;
+			case "CRUZADOR":
+				this.tamanho = 4;
+				break;
+			case "SUBMARINO":
+				this.tamanho = 3;
+				break;
+			case "PATRULHA":
+				this.tamanho = 2;
+				break;
+		}
+			
+	}
+	
 }
