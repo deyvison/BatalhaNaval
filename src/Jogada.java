@@ -4,7 +4,7 @@ public class Jogada {
 	
 	private int x,y;
 	
-	public Jogada(int x, int y){
+	public Jogada(int y, int x){
 		
 		this.x = x;
 		this.y = y;

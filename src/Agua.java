@@ -13,9 +13,8 @@ public class Agua implements ItemTabuleiro {
 	}
 
 	@Override
-	public void levarTiro() {
-		// TODO Auto-generated method stub
-		
+	public String levarTiro() {
+		return "";
 	}
 	
 }

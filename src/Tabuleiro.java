@@ -171,6 +171,35 @@ public class Tabuleiro {
 		}
 		return true;
 	}
+	
+	public void atirar(int y, int x) throws Exception{
+		
+		if(y - 1 > this.alt || y - 1 < this.alt || x - 1 > this.larg || x - 1 < this.larg){
+			throw new Exception("JOGADA INVALIDA");
+		}
+		if(this.tabuleiro[y][x].getNome().equals("AGUA") && !isJogado(y, x)){ // pode jogar
+			this.jogadas.add(new Jogada(y, x));
+			
+			if(!this.tabuleiro[y][x].getNome().equals("AGUA")){
+				String retorno = this.tabuleiro[y][x].levarTiro(); // levar tiro deve retornar algo - uma msg
+			}else{
+				System.out.println("AGUA");
+			}
+		}else{
+			System.out.println("TIRO JA EXECUTADO");
+		}
+		
+	}
+
+	private boolean isJogado(int y, int x) {
+		
+		for(Jogada j : this.jogadas){
+			if(j.getY() == y && j.getX() == x){
+				return true;
+			}
+		}
+		return false;
+	}
 }
 
 //if (objeto.instanceOF(classe));

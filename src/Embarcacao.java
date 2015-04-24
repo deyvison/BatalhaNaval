@@ -7,8 +7,6 @@ public class Embarcacao implements ItemTabuleiro {
 	public Embarcacao(String nome) {
 		
 		this.nome = nome;
-		
-		
 		this.atribuirTamanho();
 		
 		
@@ -56,9 +54,25 @@ public class Embarcacao implements ItemTabuleiro {
 	}
 
 	@Override
-	public void levarTiro() {
-		// TODO Auto-generated method stub
+	public String levarTiro() {
+
+		if(this.tamanho > 0)
+			this.tamanho--;
 		
+		if(this.tamanho == 0)
+			return "AFUNDOU: "+this.nome;
+		
+		else
+			return "ACERTOU";	
 	}
 	
 }
+// conceito de classe/objeto
+// conceito de herança/interfaces/polimorfismo
+// construtor
+// array
+// Coleções
+	//ArrayList
+	//LinkedList
+	//Map
+	//HashMap

@@ -1,5 +1,5 @@
 public interface ItemTabuleiro {
 
-	public void levarTiro();
+	public String levarTiro();
 	public String getNome();
 }
