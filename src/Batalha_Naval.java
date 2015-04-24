@@ -1,46 +1,74 @@
-import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class Batalha_Naval {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception{
 		
+	try{
+		
+	
 		Tabuleiro t1, t2;
-
-		t1 = new Tabuleiro(15, 15); // linha,coluna
-		t2 = new Tabuleiro(15, 15);
-
+	
+			t1 = new Tabuleiro(15, 15); // linha,coluna
+			t2 = new Tabuleiro(15, 15);
+	
+			t1.adicionarEmbarcacaoArquivo(args[0]);
+			t2.adicionarEmbarcacaoArquivo(args[1]);
+			
+			if(t1.isCarregado() && t2.isCarregado()) 
+				System.out.println("TABULEIROS CARREGADOS COM SUCESSO\n");
+			
+			
 		
-		/*t1.adicionarEmbarcacao(new Embarcacao("PORTA_AVIOES", 7, 4, 11, 4));
-		t1.adicionarEmbarcacao(new Embarcacao("DESTROYER", 5, 7, 5, 10));
-		t1.adicionarEmbarcacao(new Embarcacao("CRUZADOR", 11, 9, 11, 12));
-		t1.adicionarEmbarcacao(new Embarcacao("SUBMARINO", 2, 2, 4, 2));	
-		t1.adicionarEmbarcacao(new Embarcacao("PATRULHA", 14, 6, 14, 7));	
-		t1.mostrarTabuleiro();
-		
-		
-		System.out.println();
-		
-		t2.adicionarEmbarcacao(new Embarcacao("SUBMARINO", 7, 3, 9, 3));
-		t2.adicionarEmbarcacao(new Embarcacao("PATRULHA", 10, 13, 11, 13));	
-		t2.adicionarEmbarcacao(new Embarcacao("DESTROYER", 12, 5, 12, 8));
-		t2.adicionarEmbarcacao(new Embarcacao("CRUZADOR", 2, 3, 2, 6));
-		t2.adicionarEmbarcacao(new Embarcacao("PORTA_AVIOES", 6, 6, 6, 10));		
-		t2.mostrarTabuleiro();
-		*/
-		
-		t1.adicionarEmbarcacaoArquivo(args[1]);
-		t2.adicionarEmbarcacaoArquivo(args[0]);
-		
-		if(t1.isCarregado() && t2.isCarregado()) 
-			System.out.println("TABULEIROS CARREGADOS COM SUCESSO\n");
-		
-		t1.mostrarTabuleiro();
-		System.out.println();
-		t2.mostrarTabuleiro();
-		
-		
-		
-		
+			InputStreamReader ir = new InputStreamReader(System.in);
+			BufferedReader leitor = new BufferedReader(ir);
+			
+			String dados[];
+			String jogadorVez = "J1";
+			
+			while(true){
+				if(t1.getEmbarcacoesAfundadas() >= 5){
+					System.out.println("J2 GANHOU!");
+					break;
+				}else if(t2.getEmbarcacoesAfundadas() >= 5){
+					System.out.println("J1 GANHOU!");
+					break;
+				}else{
+					// jogador jogar
+					if(jogadorVez.equals("J1")){
+						while(true){
+							System.out.print(jogadorVez+"> ");
+							dados = leitor.readLine().split(" ");
+							String retorno = t2.atirar(dados[0], dados[1]);
+							System.out.println(retorno);
+							
+							if(retorno.equals("AGUA"))
+								jogadorVez = "J2";
+								break;
+						}
+						
+					}else{
+						while(true){
+							System.out.print(jogadorVez+"> ");
+							dados = leitor.readLine().split(" ");
+							String retorno = t1.atirar(dados[0], dados[1]);
+							System.out.println(retorno);
+							
+							if(retorno.equals("AGUA"))
+								jogadorVez = "J1";
+								break;
+						}
+					}
+				}
+					
+				
+				
+			}
+		}catch(Exception e){
+			System.out.println("JOGADA INVALIDA");
+		}
+			
 	}
 
 }

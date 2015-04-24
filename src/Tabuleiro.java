@@ -9,6 +9,7 @@ public class Tabuleiro {
 	private int alt, larg;
 	private ArrayList<Jogada> jogadas;
 	private boolean carregado;
+	private int embarcacoesAfundadas;
 	
 	public Tabuleiro(int alt, int larg) {
 
@@ -17,6 +18,7 @@ public class Tabuleiro {
 		this.tabuleiro = new ItemTabuleiro[larg][alt];
 		this.jogadas = new ArrayList<Jogada>();
 		this.carregado = false;
+		this.embarcacoesAfundadas = 0;
 		this.preencheAgua();
 	}
 
@@ -54,22 +56,6 @@ public class Tabuleiro {
 		this.tabuleiro = tabuleiro;
 	}
 
-	public int getAlt() {
-		return alt;
-	}
-
-	public void setAlt(int alt) {
-		this.alt = alt;
-	}
-
-	public int getLarg() {
-		return larg;
-	}
-
-	public void setLarg(int larg) {
-		this.larg = larg;
-	}
-
 	public void mostrarTabuleiro() {
 
 		int i, j;
@@ -81,7 +67,7 @@ public class Tabuleiro {
 			System.out.println();
 		}
 	}
-	public void adicionarEmbarcacaoArquivo(String nomeArquivo) throws IOException{
+	public void adicionarEmbarcacaoArquivo(String nomeArquivo) throws Exception{
 		
 		BufferedReader leitor = null;
 		int contLinha = 0;
@@ -123,13 +109,9 @@ public class Tabuleiro {
 		}
 	}
 
-	public ArrayList<Jogada> getJogadas() {
-		return jogadas;
-	}
+	
 
-	public void setJogadas(ArrayList<Jogada> jogadas) {
-		this.jogadas = jogadas;
-	}
+	
 
 	public boolean isCarregado() {
 		return carregado;
@@ -172,23 +154,41 @@ public class Tabuleiro {
 		return true;
 	}
 	
-	public void atirar(int y, int x) throws Exception{
+	public String atirar(String cordY, String cordX){
+		try{
+			int y = Integer.parseInt(cordY);
+			int x = Integer.parseInt(cordX);
 		
-		if(y - 1 > this.alt || y - 1 < this.alt || x - 1 > this.larg || x - 1 < this.larg){
-			throw new Exception("JOGADA INVALIDA");
-		}
-		if(this.tabuleiro[y][x].getNome().equals("AGUA") && !isJogado(y, x)){ // pode jogar
-			this.jogadas.add(new Jogada(y, x));
-			
-			if(!this.tabuleiro[y][x].getNome().equals("AGUA")){
-				String retorno = this.tabuleiro[y][x].levarTiro(); // levar tiro deve retornar algo - uma msg
+		
+		
+			if(y <= this.alt && y>=1 &&  x <= this.larg && x >= 1){ // verifica se jogada é válida
+				
+				if(!isJogado(y, x)){ // pode jogar
+					this.jogadas.add(new Jogada(y, x));
+					
+					if(!this.tabuleiro[y-1][x-1].getNome().equals("AGUA")){
+						String retorno = this.tabuleiro[y-1][x-1].levarTiro(); // levar tiro deve retornar algo - uma msg
+						
+						if(!retorno.equals("ACERTOU")){
+							this.embarcacoesAfundadas++;
+						}
+						return retorno;
+						
+						
+					}else{
+						return "AGUA";
+					}
+				}else{
+					return "TIRO JA EXECUTADO";
+				}
+				
 			}else{
-				System.out.println("AGUA");
+				
+				return "JOGADA INVALIDA";
 			}
-		}else{
-			System.out.println("TIRO JA EXECUTADO");
+		}catch(Exception e){
+			return "JOGADA INVALIDA";
 		}
-		
 	}
 
 	private boolean isJogado(int y, int x) {
@@ -200,6 +200,8 @@ public class Tabuleiro {
 		}
 		return false;
 	}
+	
+	public int getEmbarcacoesAfundadas(){
+		return this.embarcacoesAfundadas;
+	}
 }
-
-//if (objeto.instanceOF(classe));
