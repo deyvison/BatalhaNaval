@@ -11,5 +11,11 @@ public class Agua implements ItemTabuleiro {
 		
 		return this.nome;
 	}
+
+	@Override
+	public void levarTiro() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

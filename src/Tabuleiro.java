@@ -9,6 +9,7 @@ public class Tabuleiro {
 	private int alt, larg;
 	private ArrayList<Jogada> jogadas;
 	private boolean carregado;
+	
 	public Tabuleiro(int alt, int larg) {
 
 		this.alt = alt;
@@ -31,14 +32,14 @@ public class Tabuleiro {
 		}
 	}
 
-	public void adicionarEmbarcacao(Embarcacao e) {
+	public void adicionarEmbarcacao(Embarcacao e,int yIni, int xIni, int yFim, int xFim) {
 
 		int i, j;
-		int iniX = e.getPosXInicial()-1;
-		int iniY = e.getPosYInicial()-1;
-		for (i = iniY; i < e.getPosYFinal(); i++) {
+		int iniX = xIni -1;
+		int iniY = yIni -1;
+		for (i = iniY; i < yFim ; i++) {
 
-			for (j = iniX; j < e.getPosXFinal(); j++) {
+			for (j = iniX; j < xFim; j++) {
 
 				this.tabuleiro[i][j] = e;
 			}
@@ -95,14 +96,18 @@ public class Tabuleiro {
 				if(linha != null){
 					
 					String dados[] = linha.split(" ");
-					Embarcacao e = new Embarcacao(dados[0], 
-							Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), 
-							Integer.parseInt(dados[3]), Integer.parseInt(dados[4]));
+					Embarcacao e = new Embarcacao(dados[0]);
+					int yIni = Integer.parseInt(dados[1]);
+					int xIni = Integer.parseInt(dados[2]);;
+					int yFim = Integer.parseInt(dados[3]);;
+					int xFim = Integer.parseInt(dados[4]);;
+					
 
-					this.validaCoordenadas(e);
-					this.validaTamanho(e);
-					this.verificaEmbarcacoesSeTocam(e);
-					this.adicionarEmbarcacao(e);
+					this.validaCoordenadas(e, yIni, xIni, yFim, xFim);
+					this.validaTamanho(e, yIni, xIni, yFim, xFim);
+					this.verificaEmbarcacoesSeTocam(e, yIni, xIni, yFim, xFim);
+					
+					this.adicionarEmbarcacao(e, yIni, xIni, yFim, xFim);
 				}
 				
 			}while(linha != null);
@@ -134,30 +139,30 @@ public class Tabuleiro {
 		this.carregado = carregado;
 	}
 	
-	public boolean validaCoordenadas(Embarcacao e) throws Exception{
-		if(e.getPosYInicial() == e.getPosYFinal() || e.getPosXInicial() == e.getPosXFinal())
+	public boolean validaCoordenadas(Embarcacao e, int yIni, int xIni, int yFim, int xFim) throws Exception{
+		if(yIni == yFim || xIni == xFim)
 			return true;
 		throw new Exception();
 	}
 	
-	public boolean validaTamanho(Embarcacao e) throws Exception{
+	public boolean validaTamanho(Embarcacao e, int yIni,int xIni,int yFim,int xFim) throws Exception{
 		
-		if(e.getPosXFinal() == e.getPosXInicial() && (e.getPosYFinal() - e.getPosYInicial() + 1) == e.getTamanho())
+		if(xFim == xIni && (yFim - yIni + 1) == e.getTamanho())
 			return true;
-		else if(e.getPosYFinal() == e.getPosYInicial() && (e.getPosXFinal() - e.getPosXInicial() + 1) == e.getTamanho())
+		else if(yFim == yIni && (xFim - xIni + 1) == e.getTamanho())
 			return true;
 		
 		throw new Exception();
 	}
 	
-	public boolean verificaEmbarcacoesSeTocam(Embarcacao e) throws Exception{
+	public boolean verificaEmbarcacoesSeTocam(Embarcacao e, int yIni, int xIni, int yFim, int xFim) throws Exception{
 		
 		int i, j;
-		int iniX = e.getPosXInicial()-1;
-		int iniY = e.getPosYInicial()-1;
-		for (i = iniY; i < e.getPosYFinal(); i++) {
+		int inicioX = xIni-1;
+		int inicioY = yIni-1;
+		for (i = inicioY; i < yFim; i++) {
 
-			for (j = iniX; j < e.getPosXFinal(); j++) {
+			for (j = inicioX; j < xFim; j++) {
 
 				if (!this.tabuleiro[i][j].getNome().equals("AGUA")){
 					throw new Exception();

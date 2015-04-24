@@ -1,16 +1,13 @@
 public class Embarcacao implements ItemTabuleiro {
 
 	private String nome;
-	private int tamanho, posXInicial, posYInicial, posXFinal, posYFinal;
+	private int tamanho;
 	
 	
-	public Embarcacao(String nome, int posYInicial, int posXInicial, int posYFinal, int posXFinal) {
+	public Embarcacao(String nome) {
 		
 		this.nome = nome;
-		this.posYInicial = posYInicial;
-		this.posXInicial = posXInicial;
-		this.posYFinal = posYFinal;
-		this.posXFinal = posXFinal;
+		
 		
 		this.atribuirTamanho();
 		
@@ -33,37 +30,8 @@ public class Embarcacao implements ItemTabuleiro {
 		this.tamanho = tamanho;
 	}
 
-	public int getPosXInicial() {
-		return posXInicial;
-	}
+	
 
-	public void setPosXInicial(int posXInicial) {
-		this.posXInicial = posXInicial;
-	}
-
-	public int getPosYInicial() {
-		return posYInicial;
-	}
-
-	public void setPosYInicial(int posYInicial) {
-		this.posYInicial = posYInicial;
-	}
-
-	public int getPosXFinal() {
-		return posXFinal;
-	}
-
-	public void setPosXFinal(int posXFinal) {
-		this.posXFinal = posXFinal;
-	}
-
-	public int getPosYFinal() {
-		return posYFinal;
-	}
-
-	public void setPosYFinal(int posYFinal) {
-		this.posYFinal = posYFinal;
-	}
 	
 	public void atribuirTamanho(){
 		
@@ -85,6 +53,12 @@ public class Embarcacao implements ItemTabuleiro {
 				break;
 		}
 			
+	}
+
+	@Override
+	public void levarTiro() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
