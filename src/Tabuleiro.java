@@ -154,10 +154,10 @@ public class Tabuleiro {
 		return true;
 	}
 	
-	public String atirar(String cordY, String cordX){
+	public String atirar(String[] dados){
 		try{
-			int y = Integer.parseInt(cordY);
-			int x = Integer.parseInt(cordX);
+			int y = Integer.parseInt(dados[0]);
+			int x = Integer.parseInt(dados[1]);
 		
 		
 		

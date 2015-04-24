@@ -41,7 +41,7 @@ public class Batalha_Naval {
 					while(true){
 						System.out.print(jogadorVez+"> ");
 						dados = leitor.readLine().split(" ");
-						String retorno = t2.atirar(dados[0], dados[1]);
+						String retorno = t2.atirar(dados);
 						System.out.println(retorno);
 							
 						if(retorno.equals("AGUA"))
@@ -53,7 +53,7 @@ public class Batalha_Naval {
 					while(true){
 						System.out.print(jogadorVez+"> ");
 						dados = leitor.readLine().split(" ");
-						String retorno = t1.atirar(dados[0], dados[1]);
+						String retorno = t1.atirar(dados);
 						System.out.println(retorno);
 						
 						if(retorno.equals("AGUA"))
