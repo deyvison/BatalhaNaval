@@ -24,24 +24,24 @@ public class Batalha_Naval {
 		InputStreamReader ir = new InputStreamReader(System.in);
 		BufferedReader leitor = new BufferedReader(ir);
 			
-		String dados[];
+		String coordenadas[];
 		String jogadorVez = "J1";
 			
 		while(true){
 			
 			if(t1.getEmbarcacoesAfundadas() >= 5){
-				System.out.println("J2 GANHOU!");
+				System.out.println("VENCEDOR: J2");
 				break;
 			}else if(t2.getEmbarcacoesAfundadas() >= 5){
-				System.out.println("J1 GANHOU!");
+				System.out.println("VENCEDOR: J1");
 				break;
 			}else{
 				// jogador jogar
 				if(jogadorVez.equals("J1")){
 					while(true){
 						System.out.print(jogadorVez+"> ");
-						dados = leitor.readLine().split(" ");
-						String retorno = t2.atirar(dados);
+						coordenadas = leitor.readLine().split(" ");
+						String retorno = t2.atirar(coordenadas);
 						System.out.println(retorno);
 							
 						if(retorno.equals("AGUA"))
@@ -52,8 +52,8 @@ public class Batalha_Naval {
 				}else{
 					while(true){
 						System.out.print(jogadorVez+"> ");
-						dados = leitor.readLine().split(" ");
-						String retorno = t1.atirar(dados);
+						coordenadas = leitor.readLine().split(" ");
+						String retorno = t1.atirar(coordenadas);
 						System.out.println(retorno);
 						
 						if(retorno.equals("AGUA"))
