@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Tabuleiro {
@@ -48,14 +47,6 @@ public class Tabuleiro {
 		}
 	}
 
-	public ItemTabuleiro[][] getTabuleiro() {
-		return tabuleiro;
-	}
-
-	public void setTabuleiro(ItemTabuleiro[][] tabuleiro) {
-		this.tabuleiro = tabuleiro;
-	}
-
 	public void mostrarTabuleiro() {
 
 		int i, j;
@@ -67,6 +58,7 @@ public class Tabuleiro {
 			System.out.println();
 		}
 	}
+	
 	public void adicionarEmbarcacaoArquivo(String nomeArquivo) throws Exception{
 		
 		BufferedReader leitor = null;
@@ -88,9 +80,8 @@ public class Tabuleiro {
 					int yFim = Integer.parseInt(dados[3]);;
 					int xFim = Integer.parseInt(dados[4]);;
 					
-
 					this.validaCoordenadas(e, yIni, xIni, yFim, xFim);
-					this.validaTamanho(e, yIni, xIni, yFim, xFim);
+					this.validaTamanhoEmbarcacao(e, yIni, xIni, yFim, xFim);
 					this.verificaEmbarcacoesSeTocam(e, yIni, xIni, yFim, xFim);
 					
 					this.adicionarEmbarcacao(e, yIni, xIni, yFim, xFim);
@@ -98,7 +89,7 @@ public class Tabuleiro {
 				
 			}while(linha != null);
 			
-			this.setCarregado(true);
+			this.carregado = true;
 			
 		}catch(Exception e){
 			System.out.println("ERRO LINHA "+ contLinha +": " + nomeArquivo);
@@ -109,25 +100,17 @@ public class Tabuleiro {
 		}
 	}
 
-	
-
-	
-
 	public boolean isCarregado() {
 		return carregado;
 	}
 
-	public void setCarregado(boolean carregado) {
-		this.carregado = carregado;
-	}
-	
 	public boolean validaCoordenadas(Embarcacao e, int yIni, int xIni, int yFim, int xFim) throws Exception{
 		if(yIni == yFim || xIni == xFim)
 			return true;
 		throw new Exception();
 	}
 	
-	public boolean validaTamanho(Embarcacao e, int yIni,int xIni,int yFim,int xFim) throws Exception{
+	public boolean validaTamanhoEmbarcacao(Embarcacao e, int yIni,int xIni,int yFim,int xFim) throws Exception{
 		
 		if(xFim == xIni && (yFim - yIni + 1) == e.getTamanho())
 			return true;
@@ -159,8 +142,6 @@ public class Tabuleiro {
 			int y = Integer.parseInt(dados[0]);
 			int x = Integer.parseInt(dados[1]);
 		
-		
-		
 			if(y <= this.alt && y>=1 &&  x <= this.larg && x >= 1){ // verifica se jogada é válida
 				
 				if(!isJogado(y, x)){ // pode jogar
@@ -173,7 +154,6 @@ public class Tabuleiro {
 							this.embarcacoesAfundadas++;
 						}
 						return retorno;
-						
 						
 					}else{
 						return "AGUA";

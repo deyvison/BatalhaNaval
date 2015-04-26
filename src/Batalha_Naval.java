@@ -4,9 +4,6 @@ import java.io.InputStreamReader;
 public class Batalha_Naval {
 
 	public static void main(String[] args) throws Exception{
-		
-	
-		
 	
 		Tabuleiro t1, t2;
 	
@@ -18,8 +15,6 @@ public class Batalha_Naval {
 			
 		if(t1.isCarregado() && t2.isCarregado()) 
 			System.out.println("TABULEIROS CARREGADOS COM SUCESSO\n");
-			
-			
 		
 		InputStreamReader ir = new InputStreamReader(System.in);
 		BufferedReader leitor = new BufferedReader(ir);
@@ -48,7 +43,6 @@ public class Batalha_Naval {
 							jogadorVez = "J2";
 							break;
 					}
-						
 				}else{
 					while(true){
 						System.out.print(jogadorVez+"> ");

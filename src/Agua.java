@@ -1,6 +1,5 @@
 public class Agua implements ItemTabuleiro {
 
-	
 	private String nome;
 	
 	public Agua(){
@@ -16,5 +15,4 @@ public class Agua implements ItemTabuleiro {
 	public String levarTiro() {
 		return "";
 	}
-	
 }
