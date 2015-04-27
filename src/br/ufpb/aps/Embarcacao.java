@@ -1,3 +1,4 @@
+package br.ufpb.aps;
 public class Embarcacao implements ItemTabuleiro {
 
 	private String nome;

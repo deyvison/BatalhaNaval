@@ -1,3 +1,4 @@
+package br.ufpb.aps;
 public class Jogada {
 	
 	private int x,y;

@@ -1,3 +1,4 @@
+package br.ufpb.aps;
 public class Agua implements ItemTabuleiro {
 
 	private String nome;

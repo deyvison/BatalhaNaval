@@ -1,3 +1,4 @@
+package br.ufpb.aps;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -104,13 +105,16 @@ public class Tabuleiro {
 		return carregado;
 	}
 
-	public boolean validaCoordenadas(Embarcacao e, int yIni, int xIni, int yFim, int xFim) throws Exception{
+	public boolean validaCoordenadas(Embarcacao e, 
+			int yIni, int xIni, int yFim, int xFim) throws Exception{
+		
 		if(yIni == yFim || xIni == xFim)
 			return true;
 		throw new Exception();
 	}
 	
-	public boolean validaTamanhoEmbarcacao(Embarcacao e, int yIni,int xIni,int yFim,int xFim) throws Exception{
+	public boolean validaTamanhoEmbarcacao(Embarcacao e, 
+			int yIni,int xIni,int yFim,int xFim) throws Exception{
 		
 		if(xFim == xIni && (yFim - yIni + 1) == e.getTamanho())
 			return true;
@@ -120,7 +124,8 @@ public class Tabuleiro {
 		throw new Exception();
 	}
 	
-	public boolean verificaEmbarcacoesSeTocam(Embarcacao e, int yIni, int xIni, int yFim, int xFim) throws Exception{
+	public boolean verificaEmbarcacoesSeTocam(Embarcacao e, 
+			int yIni, int xIni, int yFim, int xFim) throws Exception{
 		
 		int i, j;
 		int inicioX = xIni-1;
