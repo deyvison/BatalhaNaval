@@ -1,4 +1,4 @@
-package br.ufpb.aps;
+package batalha.modelo;
 public class Jogada {
 	
 	private int x,y;

@@ -1,4 +1,6 @@
-package br.ufpb.aps;
+package batalha.modelo;
+
+
 public class Embarcacao implements ItemTabuleiro {
 
 	private String nome;
@@ -7,6 +9,7 @@ public class Embarcacao implements ItemTabuleiro {
 	public Embarcacao(String nome) {
 		
 		this.nome = nome;
+		
 		this.atribuirTamanho();
 	}
 

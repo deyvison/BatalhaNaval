@@ -1,4 +1,6 @@
-package br.ufpb.aps;
+package batalha.modelo;
+
+
 public class Agua implements ItemTabuleiro {
 
 	private String nome;

@@ -1,7 +1,6 @@
-package br.ufpb.aps;
-import java.io.BufferedReader;
-import java.io.FileReader;
+package batalha.modelo;
 import java.util.ArrayList;
+
 
 public class Tabuleiro {
 
@@ -34,18 +33,47 @@ public class Tabuleiro {
 		}
 	}
 
-	public void adicionarEmbarcacao(Embarcacao e,int yIni, int xIni, int yFim, int xFim) {
+	//public void adicionarEmbarcacao(Embarcacao e,int yIni, int xIni, int yFim, int xFim) {
+	public void adicionarEmbarcacao(ArrayList<String> embarcacoes, String nomeArquivo) throws Exception {
+		
+		int i,j,iniX,iniY,fimX,fimY;
+		String dados[];
+		int contLinha = 0;
+		try{
+			
+			
+			for(String x : embarcacoes){
 
-		int i, j;
-		int iniX = xIni -1;
-		int iniY = yIni -1;
-		for (i = iniY; i < yFim ; i++) {
+				contLinha++;
+				dados = x.split(" ");
+				
+				iniY = Integer.parseInt(dados[1]);
+				iniX = Integer.parseInt(dados[2]);
+				fimY = Integer.parseInt(dados[3]);
+				fimX = Integer.parseInt(dados[4]);
+				
+				
+				Embarcacao e = new Embarcacao(dados[0]);
+				
+				this.validaCoordenadas(e, iniY, iniX, fimY, fimX);
+				this.validaTamanhoEmbarcacao(e, iniY, iniX, fimY, fimX);
+				this.verificaEmbarcacoesSeTocam(e, iniY, iniX, fimY, fimX);
+				
+				for (i = iniY-1; i < fimY ; i++) {
 
-			for (j = iniX; j < xFim; j++) {
+					for (j = iniX-1; j < fimX; j++) {
 
-				this.tabuleiro[i][j] = e;
+						this.tabuleiro[i][j] = e;
+					}
+				}
 			}
+			this.carregado = true;
+			
+		}catch(Exception e){
+			throw new Exception("ERRO LINHA "+ contLinha +": " + nomeArquivo);
 		}
+		
+
 	}
 
 	public void mostrarTabuleiro() {
@@ -60,49 +88,10 @@ public class Tabuleiro {
 		}
 	}
 	
-	public void adicionarEmbarcacaoArquivo(String nomeArquivo) throws Exception{
-		
-		BufferedReader leitor = null;
-		int contLinha = 0;
-		try{
-			leitor = new BufferedReader(new FileReader(nomeArquivo));
-			String linha = null;
-			
-			do{
-				contLinha++;
-				linha = leitor.readLine();
-				
-				if(linha != null){
-					
-					String dados[] = linha.split(" ");
-					Embarcacao e = new Embarcacao(dados[0]);
-					int yIni = Integer.parseInt(dados[1]);
-					int xIni = Integer.parseInt(dados[2]);;
-					int yFim = Integer.parseInt(dados[3]);;
-					int xFim = Integer.parseInt(dados[4]);;
-					
-					this.validaCoordenadas(e, yIni, xIni, yFim, xFim);
-					this.validaTamanhoEmbarcacao(e, yIni, xIni, yFim, xFim);
-					this.verificaEmbarcacoesSeTocam(e, yIni, xIni, yFim, xFim);
-					
-					this.adicionarEmbarcacao(e, yIni, xIni, yFim, xFim);
-				}
-				
-			}while(linha != null);
-			
-			this.carregado = true;
-			
-		}catch(Exception e){
-			System.out.println("ERRO LINHA "+ contLinha +": " + nomeArquivo);
-			
-		}finally{
-			
-			if(leitor != null) leitor.close();
-		}
-	}
+	
 
 	public boolean isCarregado() {
-		return carregado;
+		return this.carregado;
 	}
 
 	public boolean validaCoordenadas(Embarcacao e, 
@@ -189,4 +178,7 @@ public class Tabuleiro {
 	public int getEmbarcacoesAfundadas(){
 		return this.embarcacoesAfundadas;
 	}
+	
+	
 }
+// implementar tiro de canhão, afeta todas as células ao lado
