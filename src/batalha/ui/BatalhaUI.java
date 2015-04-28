@@ -2,14 +2,11 @@ package batalha.ui;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
 import batalha.facade.BatalhaNavalFacade;
 
 public class BatalhaUI {
-
 	
 	public static void main(String[] args) throws Exception{
-
 		new BatalhaUI().jogar(args[0],args[1]);
 	}
 	
@@ -34,7 +31,7 @@ public class BatalhaUI {
 					break;
 				
 				}else{
-					// jogador jogar
+					
 					if(jogadorVez.equals("J1")){
 						
 						while(true){
