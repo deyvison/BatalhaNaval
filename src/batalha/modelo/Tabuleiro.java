@@ -21,7 +21,7 @@ public class Tabuleiro {
 		this.preencheAgua();
 	}
 
-	public void preencheAgua() {
+	private void preencheAgua() {
 
 		Agua a = new Agua();
 

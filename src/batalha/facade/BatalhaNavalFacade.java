@@ -4,7 +4,7 @@ import batalha.modelo.BatalhaNaval;
 
 public class BatalhaNavalFacade {
 	
-	BatalhaNaval bn;
+	private BatalhaNaval bn;
 	
 	public BatalhaNavalFacade(String j1 ,String j2) throws Exception{
 		bn = new BatalhaNaval(j1,j2);

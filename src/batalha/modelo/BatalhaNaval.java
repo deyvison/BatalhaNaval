@@ -8,8 +8,9 @@ public class BatalhaNaval {
 	public static final int ALT = 15;
 	public static final int LARG = 15;
 	
-	Tabuleiro t1, t2;
-	BatalhaIO leitorArquivos;
+	private Tabuleiro t1, t2;
+	private BatalhaIO leitorArquivos;
+	
 	
 	public BatalhaNaval(String j1, String j2) throws Exception{
 		
@@ -23,6 +24,7 @@ public class BatalhaNaval {
 		t1.adicionarEmbarcacao(embarcacoesJ1, j1);
 		t2.adicionarEmbarcacao(embarcacoesJ2, j2);
 	}
+	
 
 	public boolean getEmbarcacoesAfundadas(String jogador) {
 		if(jogador.equals("J1"))
